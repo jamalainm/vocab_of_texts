@@ -33,5 +33,12 @@ These functions will process a spacy nlp document, compiling lists of tuples: (w
 
 <ul>
 <li><code>foo = get_knowledge()</code>
-<p>Where 'foo' is the name of the tuple</p>
+<p>Where 'foo' is a variable name of your choosing</p>
+</ul>
+
+<p>Return a list of lemmata after running the vocab list through stanza</p>
+
+<ul>
+<li><code>foo = get_learned_lemmata()</code>
+<p>Where 'foo' is a variable name of your choosing</p>
 </ul>

@@ -1,11 +1,26 @@
 These functions will process a spacy nlp document, compiling lists of tuples: (word, freq).
 
-Usage:
+<h1>Usage:</h1>
 
-Generate a list based on the specific word forms
+<p>Generate a list based on the specific word forms</p>
 
-&lt;foo&gt; = word_form_freq(&lt;bar&gt;)
+<ul>
+<li><code>foo = word_form_freq(bar)</code>
+<p>Where 'bar' is the name of the spacy nlp document</p>
+</ul>
 
-Generate a list based on the lemmata
+<p>Generate a list based on the lemmata</p>
 
-&lt;foo&gt; = word_form_freq(&lt;bar&gt;)
+<ul>
+<li>
+<li><code>foo = word_form_freq(bar)</code>
+<p>Where 'bar' is the name of the spacy nlp document</p>
+</ul>
+
+<p>Generate a dictionary organized by lemma, sorted by frequency including word forms
+
+<ul>
+<li>
+<li><code>foo = lemma_and_form(bar)</code>
+<p>Where 'bar' is the name of the spacy nlp document</p>
+</ul>

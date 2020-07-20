@@ -19,7 +19,7 @@ def get_knowledge():
 # Get ITTB codes for word forms known
     grammar = mydb.cursor()
 
-    grammar.execute("SELECT ITTB_Code FROM curriculum.cll_grammar_topics WHERE unit = 1")
+    grammar.execute("SELECT ITTB_Code FROM curriculum.cll_grammar_topics WHERE unit = 1 or unit = 2 or unit = 3")
 # Get the codes out of tuple and into list
     patterns = []
 
@@ -30,7 +30,7 @@ def get_knowledge():
 # Get the phrases learned so far
     vocab = mydb.cursor()
 
-    vocab.execute("SELECT phrase FROM Verba.nineteen")
+    vocab.execute("SELECT phrase FROM Verba.seventeen")
 # Get the vocab out of tuple and into list
     phrases = [v[0] for v in vocab]
 # Get rid of slashes, hyphenates; unidecode, and lowercase

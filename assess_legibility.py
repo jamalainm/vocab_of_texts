@@ -63,25 +63,32 @@ class Text:
 
     def process_text(self):
         """ concatenates list and evaluates sentences """
-        continuous_text = ' '.join(text)
-        doc = nlp(continuous_text)
+#        continuous_text = ' '.join(text)
+#        doc = nlp(continuous_text)
+        doc = self.text
         sentences = list(doc.sents)
-        for sentence in sentences:
-            self.analyze_sentence(sentence)
+        num_sents = len(sentences)
+        for index,sentence in enumerate(sentences):
+            if self.analyze_sentence(sentence):
+                print(f"{index}/{num_sents}: {sentence}")
 
     def process_paragraphs(self):
         """ runs each paragraph through spacy, then evaluates sentences """
-        reasonable_sentences = []
+#        reasonable_sentences = []
         text = self.text
         for paragraph in text:
 #            doc = nlp(paragraph)
             sentences = list(text.sents)
-            for sentence in sentences:
+            num_sents = len(sentences)
+            for index,sentence in enumerate(sentences):
                 if self.analyze_sentence(sentence):
-                    reasonable_sentences.append(sentence)
+                    print(f"{index}/{num_sents}: sentence")
+                else:
+                    print(f"{index}/{num_sents}: nope")
+#                    reasonable_sentences.append(sentence)
 
-        for rs in reasonable_sentences:
-            print(rs)
+#        for rs in reasonable_sentences:
+#            print(rs)
 
     def assess_paragraph_difficulty(self):
         """ see how many words and how many unique words there are """
@@ -117,16 +124,17 @@ class Text:
             elif self.lemma_known(token.lemma_) and self.pattern_known(token.tag_):
                 known_words += 1
 
-        if known_words / sentence_length >= 0.65:
+        if known_words / sentence_length >= 0.75:
             return True
 
 if __name__ == '__main__':
-    filename = 'smooshed-1.pickle'
-#    filename = 'clean_inscriptions.json'
+#    filename = 'andria.pickle'
+#    filename = 'smooshed-1.pickle'
+    filename = '../Archive_Text/Barrel/andria.pickle'
 #    with open(filename,'r') as f:
 #        text = json.load(f)
     with open(filename,'br') as f:
         text = pickle.load(f)
 
     work = Text(text)
-    work.process_paragraphs()
+    work.process_text()

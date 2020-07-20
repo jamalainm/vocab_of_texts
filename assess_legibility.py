@@ -40,6 +40,9 @@ class Text:
     pattern_known(tag):
         returns 'True' if that pattern has been learned
 
+    unknown(word):
+        returns word-forms that are not known or deducible
+
     """
     def __init__(self,text):
         self.knowledge = get_knowledge()
@@ -127,6 +130,21 @@ class Text:
         if known_words / sentence_length >= 0.75:
             return True
 
+    def unknown(self):
+        """ returns unknown/non-deducible word forms """
+
+        not_known = []
+
+        for token in self.text:
+            if self.word_form_known(token.text):
+                pass
+            elif self.lemma_known(token.lemma_) and self.pattern_known(token.tag_):
+                pass
+            else:
+                not_known.append(token.text)
+
+        return not_known
+
 if __name__ == '__main__':
 #    filename = 'andria.pickle'
 #    filename = 'smooshed-1.pickle'
@@ -137,4 +155,6 @@ if __name__ == '__main__':
         text = pickle.load(f)
 
     work = Text(text)
-    work.process_text()
+    unknown = work.unknown()
+    for word in unknown:
+        print(word)
